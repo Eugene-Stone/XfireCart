@@ -1,0 +1,159 @@
+{
+	"products": [
+		{
+			"id": "1",
+			"name": "Котел XFire Premium",
+			"image": "img/products/1.jpg",
+			"category": "комбинированный",
+			"types": [{ "typeName": "на газу" }, { "typeName": "электро" }],
+			"power_options": ["800 Вт", "1100 Вт", "1500 Вт"],
+			"selected_power": "800 Вт",
+			"price": {
+				"800 Вт": 499,
+				"1100 Вт": 549,
+				"1500 Вт": 599
+			},
+			"popularity": 95,
+			"rating": 4.9
+		},
+		{
+			"id": "2",
+			"name": "Котел XFire EcoPlus",
+			"image": "img/products/2.jpg",
+			"category": "электро",
+			"types": [{ "typeName": "электро" }],
+			"power_options": ["1100 Вт", "1500 Вт", "2000 Вт"],
+			"selected_power": "1100 Вт",
+			"price": {
+				"1100 Вт": 420,
+				"1500 Вт": 470,
+				"2000 Вт": 520
+			},
+			"popularity": 88,
+			"rating": 4.7
+		},
+		{
+			"id": "3",
+			"name": "Котел XFire SolidMax",
+			"image": "img/products/3.jpg",
+			"category": "твердотопливный",
+			"types": [{ "typeName": "твердотопливный" }],
+			"power_options": ["1500 Вт", "2200 Вт"],
+			"selected_power": "1500 Вт",
+			"price": {
+				"1500 Вт": 650,
+				"2200 Вт": 730
+			},
+			"popularity": 74,
+			"rating": 4.5
+		},
+		{
+			"id": "4",
+			"name": "Котел XFire GasMaster",
+			"image": "img/products/4.jpg",
+			"category": "на газу",
+			"types": [{ "typeName": "на газу" }],
+			"power_options": ["800 Вт", "1100 Вт"],
+			"selected_power": "800 Вт",
+			"price": {
+				"800 Вт": 480,
+				"1100 Вт": 530
+			},
+			"popularity": 92,
+			"rating": 4.8
+		},
+		{
+			"id": "5",
+			"name": "Котел XFire Hybrid Pro",
+			"image": "img/products/5.jpg",
+			"category": "комбинированный",
+			"types": [{ "typeName": "на газу" }, { "typeName": "электро" }],
+			"power_options": ["1100 Вт", "1500 Вт", "2500 Вт"],
+			"selected_power": "1100 Вт",
+			"price": {
+				"1100 Вт": 580,
+				"1500 Вт": 640,
+				"2500 Вт": 710
+			},
+			"popularity": 81,
+			"rating": 4.6
+		},
+		{
+			"id": "6",
+			"name": "Котел XFire Standard",
+			"image": "img/products/6.jpg",
+			"category": "на газу",
+			"types": [{ "typeName": "на газу" }],
+			"power_options": ["800 Вт", "1100 Вт", "1500 Вт"],
+			"selected_power": "800 Вт",
+			"price": {
+				"800 Вт": 390,
+				"1100 Вт": 435,
+				"1500 Вт": 480
+			},
+			"popularity": 85,
+			"rating": 4.4
+		},
+		{
+			"id": "7",
+			"name": "Котел XFire VoltLine",
+			"image": "img/products/7.jpg",
+			"category": "электро",
+			"types": [{ "typeName": "электро" }],
+			"power_options": ["800 Вт", "1100 Вт"],
+			"selected_power": "800 Вт",
+			"price": {
+				"800 Вт": 350,
+				"1100 Вт": 395
+			},
+			"popularity": 69,
+			"rating": 4.2
+		},
+		{
+			"id": "8",
+			"name": "Котел XFire TermoWood",
+			"image": "img/products/8.jpg",
+			"category": "твердотопливный",
+			"types": [{ "typeName": "твердотопливный" }],
+			"power_options": ["1500 Вт", "3000 Вт"],
+			"selected_power": "1500 Вт",
+			"price": {
+				"1500 Вт": 720,
+				"3000 Вт": 850
+			},
+			"popularity": 63,
+			"rating": 4.3
+		},
+		{
+			"id": "9",
+			"name": "Котел XFire Optima",
+			"image": "img/products/9.jpg",
+			"category": "комбинированный",
+			"types": [{ "typeName": "на газу" }, { "typeName": "электро" }],
+			"power_options": ["800 Вт", "1100 Вт", "1500 Вт"],
+			"selected_power": "800 Вт",
+			"price": {
+				"800 Вт": 510,
+				"1100 Вт": 565,
+				"1500 Вт": 620
+			},
+			"popularity": 78,
+			"rating": 4.5
+		},
+		{
+			"id": "10",
+			"name": "Котел XFire UltraVolt",
+			"image": "img/products/10.jpg",
+			"category": "электро",
+			"types": [{ "typeName": "электро" }],
+			"power_options": ["1500 Вт", "2200 Вт"],
+			"selected_power": "1500 Вт",
+			"price": {
+				"1500 Вт": 460,
+				"2200 Вт": 515
+			},
+			"popularity": 87,
+			"rating": 4.7
+		}
+	]
+}
