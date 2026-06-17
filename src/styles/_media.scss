@@ -1,0 +1,155 @@
+
+@media (max-width: 1200px) {
+  .wrapper {
+    width: calc(100vw - 40px);
+    margin: 20px auto;
+  }
+
+  .xfire-block {
+    width: 30%; 
+    margin-right: 0 !important;
+  }
+
+  .content__items {
+    justify-content: space-around;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .header {
+    padding: 20px 0;
+  }
+
+  .content__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .categories {
+    margin-bottom: 20px;
+    width: 100%;
+    overflow-x: auto; 
+  }
+
+  .categories ul li {
+    padding: 10px 20px;
+    white-space: nowrap;
+  }
+
+  .xfire-block {
+    width: 45%;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .cart__item {
+    flex-wrap: wrap;
+	position: relative;
+  }
+
+  .cart__item-img {
+	min-width: 80px;
+  }
+
+  .cart__item-info {
+    width: 70%;
+  }
+
+  .cart__item-count {
+    width: 50%;
+    margin-top: 20px;
+  }
+
+  .cart__item-price {
+    width: 40%;
+    margin-top: 20px;
+    justify-content: flex-end;
+  }
+  .cart__item-remove {
+	position: absolute;
+	right: 0;
+	top: 20px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .header__logo h1 {
+    font-size: 18px;
+  }
+
+  .header__logo p {
+    font-size: 14px;
+  }
+
+  .button--cart {
+    padding: 10px 15px;
+  }
+
+  .xfire-block {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 40px auto !important;
+  }
+
+  .cart .content__title {
+    font-size: 24px;
+  }
+
+  .cart__bottom-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cart__bottom-buttons {
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
+
+  .cart__bottom-buttons .go-back-btn,
+  .cart__bottom-buttons .pay-btn {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 100vw;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  .header__logo img {
+    width: 30px;
+    margin-right: 8px;
+  }
+
+  .cart__item-img {
+    width: 20%;
+  }
+
+  .cart__item-info {
+    width: 75%;
+  }
+
+  .cart__item-info h3 {
+    font-size: 16px;
+  }
+
+  .cart--empty {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .cart--empty img {
+    width: 200px;
+  }
+}
