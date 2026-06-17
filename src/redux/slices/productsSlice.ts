@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchProducts } from './productsThunk';
-import type { Product } from '../../types';
+import { fetchCategories } from './categoriesThunk';
+import type { Product, Category } from '../../types';
 
 export interface ProductsState {
 	products: Product[];
@@ -10,6 +11,7 @@ export interface ProductsState {
 	searchValue: string;
 	sortBy: string;
 	sortOrder: 'asc' | 'desc';
+	categories: Category[];
 }
 
 const initialState: ProductsState = {
@@ -20,6 +22,7 @@ const initialState: ProductsState = {
 	searchValue: '',
 	sortBy: '',
 	sortOrder: 'asc',
+	categories: [],
 };
 
 export const productsSlice = createSlice({
