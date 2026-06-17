@@ -24,24 +24,24 @@ export default function ProductCard(props: Props) {
 			<h4 className="xfire-block__title">{name}</h4>
 			<div className="xfire-block__selector">
 				<ul>
-					{/* <li className="active">на газу</li>
-					<li>электро</li> */}
-
 					{types.map((type, i) => (
 						<li key={i}>{type.typeName}</li>
 					))}
 				</ul>
 				<ul>
-					{/* <li className="active">800 Вт</li>
-					<li>1100 Вт</li>
-					<li>1500 Вт</li> */}
-					{power_options.map((power, i) => (
-						<li key={i}>{power}</li>
-					))}
+					{power_options.map((power, i) => {
+						let powerActive = power === selected_power ? 'active' : '';
+
+						return (
+							<li key={i} className={powerActive}>
+								{power}
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 			<div className="xfire-block__bottom">
-				<div className="xfire-block__price">от 499 $</div>
+				<div className="xfire-block__price">от {price[selected_power]} $</div>
 				<div className="button button--outline button--add">
 					<svg
 						width={12}

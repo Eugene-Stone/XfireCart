@@ -16,3 +16,8 @@ export type Product = {
 	popularity: number;
 	rating: number;
 };
+
+export type Category = {
+	id: number;
+	name: string;
+};

@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import request from '../api/request';
+import type { Category } from '../types';
 
-import type { Product } from '../types';
-
-export default function usePrroducts() {
-	const [products, setProducts] = useState<Product[]>([]);
+export default function useCategories() {
+	const [categories, setCategories] = useState<Category[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [errorData, setErrorData] = useState<string | null>(null);
 
@@ -13,12 +12,12 @@ export default function usePrroducts() {
 
 		async function fetchData() {
 			try {
-				const products = await request<Product[]>('/products', {
+				const categoriesData = await request<Category[]>('/categories', {
 					method: 'GET',
 					signal: controller.signal,
 				});
 
-				setProducts(products);
+				setCategories(categoriesData);
 			} catch (error) {
 				setErrorData(error instanceof Error ? error.message : 'Unknown error');
 			} finally {
@@ -35,7 +34,7 @@ export default function usePrroducts() {
 	}, []);
 
 	return {
-		products,
+		categories,
 		loading,
 		errorData,
 	};
