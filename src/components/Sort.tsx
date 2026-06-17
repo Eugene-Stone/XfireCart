@@ -21,8 +21,10 @@ export default function Sort() {
 			<div className="sort__popup hidden">
 				<ul>
 					<li className="active">популярности</li>
-					<li>цене</li>
-					<li>алфавиту</li>
+					<li>цене ASC</li>
+					<li>цене DESC</li>
+					<li>алфавиту ASC</li>
+					<li>алфавиту DESC</li>
 				</ul>
 			</div>
 		</div>

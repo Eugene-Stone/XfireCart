@@ -1,11 +1,21 @@
-import React from 'react';
+import { useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { fetchProducts } from '../redux/slices/productsThunk.ts';
+
 import ProductCard from './ProductCard';
 import Filter from './Filter';
 import Sort from './Sort';
-import { useProductsContext } from '../context/ProductsContext/useProductsContext';
 
 export default function ProductList() {
-	const { products } = useProductsContext();
+	const dispatch = useAppDispatch();
+
+	const { products, loading, errorData, currentCategory, searchValue, sortBy, sortOrder } =
+		useAppSelector((state) => state.productsReducer);
+
+	useEffect(() => {
+		dispatch(fetchProducts());
+	}, [dispatch, currentCategory, searchValue, sortBy, sortOrder]);
 
 	return (
 		<div className="content">

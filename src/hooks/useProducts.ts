@@ -13,7 +13,7 @@ export default function useProducts() {
 
 		async function fetchData() {
 			try {
-				const productsData = await request<Product[]>('/products', {
+				const productsData = await request<Product[]>('/products?category:eq=электро', {
 					method: 'GET',
 					signal: controller.signal,
 				});
