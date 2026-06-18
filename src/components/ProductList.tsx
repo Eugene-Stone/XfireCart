@@ -37,23 +37,22 @@ export default function ProductList() {
 		dispatch(fetchProducts());
 	}, [dispatch, currentCategory, searchValue, sortBy, sortOrder, page]);
 
-	console.log(pages);
-	console.log(
-		'page',
-		page,
-		'pages',
-		pages,
-		'items',
-		items,
-		'first',
-		first,
-		'prev',
-		prev,
-		'next',
-		next,
-		'last',
-		last,
-	);
+	// console.log(
+	// 	'page',
+	// 	page,
+	// 	'pages',
+	// 	pages,
+	// 	'items',
+	// 	items,
+	// 	'first',
+	// 	first,
+	// 	'prev',
+	// 	prev,
+	// 	'next',
+	// 	next,
+	// 	'last',
+	// 	last,
+	// );
 
 	return (
 		<div className="content">

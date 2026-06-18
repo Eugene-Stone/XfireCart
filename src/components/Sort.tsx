@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setSortBy, setSortOrder } from '../redux/slices/productsSlice';
 
+import { Transition } from 'react-transition-group';
+
 export default function Sort() {
 	const [sortOpen, setSortOpen] = useState(false);
+	const nodeRef = useRef<HTMLDivElement>(null);
 
 	const dispatch = useAppDispatch();
 	const { sortBy, sortOrder } = useAppSelector((state) => state.productsReducer);
@@ -56,11 +60,11 @@ export default function Sort() {
 		(sort) => sort.sortBy === sortBy && sort.sortOrder === sortOrder,
 	);
 
-	// console.log(sortListActive);
+	console.log(sortOpen);
 
 	return (
-		<div className="sort">
-			<div className="sort__label">
+		<div className={`sort ${sortOpen && 'open'}`}>
+			<div className="sort__label" onClick={() => sortToggle()}>
 				<svg
 					width={10}
 					height={6}
@@ -73,9 +77,33 @@ export default function Sort() {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span onClick={() => sortToggle()}>{sortListActive?.sortByName}</span>
+				<span>{sortListActive?.sortByName}</span>
 			</div>
-			{sortOpen && (
+
+			<Transition in={sortOpen} unmountOnExit={true} timeout={300} nodeRef={nodeRef}>
+				{(state) => (
+					<div ref={nodeRef} className={`sort__popup ${state}`}>
+						<ul>
+							{sortList.map((item, i) => {
+								let activeSort =
+									item.sortBy === sortBy && item.sortOrder === sortOrder
+										? 'active'
+										: '';
+								return (
+									<li
+										key={i}
+										className={activeSort}
+										onClick={() => handleSorting(item)}>
+										{item.sortByName}
+									</li>
+								);
+							})}
+						</ul>
+					</div>
+				)}
+			</Transition>
+
+			{/* {sortOpen && (
 				<div className="sort__popup">
 					<ul>
 						{sortList.map((item, i) => {
@@ -94,7 +122,7 @@ export default function Sort() {
 						})}
 					</ul>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 }

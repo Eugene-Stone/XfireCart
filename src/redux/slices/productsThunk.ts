@@ -37,7 +37,7 @@ export const fetchProducts = createAsyncThunk<ProductsResponse, void, { state: R
 			url += `_sort=${sortOrder === 'desc' ? '-' : ''}${sortBy}&`;
 		}
 
-		console.log(url);
+		// console.log(url);
 		// return await request<Product[]>(url);
 
 		const response = await request<ProductsResponse>(url);
