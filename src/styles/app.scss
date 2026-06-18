@@ -25,9 +25,11 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
+   //  display: flex;
+   //  flex-wrap: wrap;
 	//  justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
 	 gap: 30px;
   }
 

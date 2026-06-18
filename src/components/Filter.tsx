@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { RootState } from '../redux/store';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { setCurrentCategory } from '../redux/slices/productsSlice';
+import { setCurrentCategory, setPage } from '../redux/slices/productsSlice';
 import { fetchCategories } from '../redux/slices/categoriesThunk.ts';
 
 export default function Filter() {
@@ -30,7 +30,10 @@ export default function Filter() {
 						<li
 							className={catActive}
 							key={i}
-							onClick={() => dispatch(setCurrentCategory(cat.name))}>
+							onClick={() => (
+								dispatch(setCurrentCategory(cat.name)),
+								dispatch(setPage(1))
+							)}>
 							{cat.name}
 						</li>
 					);

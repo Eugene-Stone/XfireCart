@@ -3,14 +3,27 @@ import request from '../../api/request';
 import type { Product } from '../../types';
 import type { RootState } from '../store';
 
-export const fetchProducts = createAsyncThunk<Product[], void, { state: RootState }>(
+interface ProductsResponse {
+	first: number;
+	prev: number | null;
+	next: number | null;
+	last: number;
+	pages: number;
+	items: number;
+	data: Product[];
+}
+
+export const fetchProducts = createAsyncThunk<ProductsResponse, void, { state: RootState }>(
 	'products/fetchProducts',
 	async (_, thunkAPI) => {
 		const state = thunkAPI.getState();
 
-		const { currentCategory, searchValue, sortBy, sortOrder } = state.productsReducer;
+		const { currentCategory, searchValue, sortBy, sortOrder, page, per_page } =
+			state.productsReducer;
 
 		let url = '/products?';
+
+		url += `_page=${page}&_per_page=${per_page}&`;
 
 		if (currentCategory !== 'Все' && currentCategory !== '') {
 			url += `category:eq=${currentCategory}&`;
@@ -21,10 +34,16 @@ export const fetchProducts = createAsyncThunk<Product[], void, { state: RootStat
 		}
 
 		if (sortBy !== '') {
-			url += `_sort=${sortOrder === 'desc' ? '-' : ''}${sortBy}`;
+			url += `_sort=${sortOrder === 'desc' ? '-' : ''}${sortBy}&`;
 		}
 
-		// console.log(url);
-		return await request<Product[]>(url);
+		console.log(url);
+		// return await request<Product[]>(url);
+
+		const response = await request<ProductsResponse>(url);
+
+		return response;
 	},
 );
+
+// GET /posts?_page=1&_per_page=25

@@ -10,6 +10,16 @@ export interface ProductsState {
 	searchValue: string;
 	sortBy: string;
 	sortOrder: 'asc' | 'desc';
+
+	page: number;
+	per_page: number;
+	pages: number;
+	items: number;
+
+	first: number | null;
+	prev: number | null;
+	next: number | null;
+	last: number | null;
 }
 
 const initialState: ProductsState = {
@@ -20,6 +30,17 @@ const initialState: ProductsState = {
 	searchValue: '',
 	sortBy: 'popularity',
 	sortOrder: 'desc',
+
+	// Json-server pagination
+	page: 1,
+	per_page: 4,
+	pages: 0,
+	items: 0,
+
+	first: null,
+	prev: null,
+	next: null,
+	last: null,
 };
 
 export const productsSlice = createSlice({
@@ -35,6 +56,9 @@ export const productsSlice = createSlice({
 		setSortOrder: (state, action) => {
 			state.sortOrder = action.payload;
 		},
+		setPage: (state, action) => {
+			state.page = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -44,7 +68,15 @@ export const productsSlice = createSlice({
 			})
 			.addCase(fetchProducts.fulfilled, (state, action) => {
 				state.loading = false;
-				state.products = action.payload;
+				// state.products = action.payload;
+				state.products = action.payload.data;
+				state.pages = action.payload.pages;
+				state.items = action.payload.items;
+
+				state.first = action.payload.first;
+				state.prev = action.payload.prev;
+				state.next = action.payload.next;
+				state.last = action.payload.last;
 			})
 			.addCase(fetchProducts.rejected, (state, action) => {
 				state.loading = false;
@@ -53,5 +85,5 @@ export const productsSlice = createSlice({
 	},
 });
 
-export const { setCurrentCategory, setSortBy, setSortOrder } = productsSlice.actions;
+export const { setCurrentCategory, setSortBy, setSortOrder, setPage } = productsSlice.actions;
 export default productsSlice.reducer;

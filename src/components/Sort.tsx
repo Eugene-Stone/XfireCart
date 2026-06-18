@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setSortBy, setSortOrder } from '../redux/slices/productsSlice';
 
 export default function Sort() {
+	const [sortOpen, setSortOpen] = useState(false);
+
 	const dispatch = useAppDispatch();
 	const { sortBy, sortOrder } = useAppSelector((state) => state.productsReducer);
 
@@ -11,9 +14,14 @@ export default function Sort() {
 		sortOrder: string;
 	};
 
+	function sortToggle() {
+		setSortOpen(!sortOpen);
+	}
+
 	function handleSorting(sort: SortList) {
 		dispatch(setSortBy(sort.sortBy));
 		dispatch(setSortOrder(sort.sortOrder));
+		sortToggle();
 	}
 
 	const sortList = [
@@ -44,6 +52,12 @@ export default function Sort() {
 		},
 	];
 
+	const sortListActive = sortList.find(
+		(sort) => sort.sortBy === sortBy && sort.sortOrder === sortOrder,
+	);
+
+	// console.log(sortListActive);
+
 	return (
 		<div className="sort">
 			<div className="sort__label">
@@ -59,21 +73,28 @@ export default function Sort() {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span>популярности</span>
+				<span onClick={() => sortToggle()}>{sortListActive?.sortByName}</span>
 			</div>
-			<div className="sort__popup">
-				<ul>
-					{sortList.map((item, i) => {
-						let activeSort =
-							item.sortBy === sortBy && item.sortOrder === sortOrder ? 'active' : '';
-						return (
-							<li key={i} className={activeSort} onClick={() => handleSorting(item)}>
-								{item.sortByName}
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+			{sortOpen && (
+				<div className="sort__popup">
+					<ul>
+						{sortList.map((item, i) => {
+							let activeSort =
+								item.sortBy === sortBy && item.sortOrder === sortOrder
+									? 'active'
+									: '';
+							return (
+								<li
+									key={i}
+									className={activeSort}
+									onClick={() => handleSorting(item)}>
+									{item.sortByName}
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			)}
 		</div>
 	);
 }

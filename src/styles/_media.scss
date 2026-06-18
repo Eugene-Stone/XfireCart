@@ -1,15 +1,13 @@
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .wrapper {
     width: calc(100vw - 40px);
     margin: 20px auto;
   }
 
-  .xfire-block {
-    width: 30%; 
-    margin-right: 0 !important;
+  .content__items {
+	grid-template-columns: repeat(3,1fr);
   }
-
 }
 
 
@@ -34,9 +32,9 @@
     white-space: nowrap;
   }
 
-  .xfire-block {
-    width: 45%;
-  }
+.content__items {
+grid-template-columns: repeat(2,1fr);
+}
 
   h1 {
     font-size: 32px;
@@ -91,6 +89,9 @@
     max-width: 320px;
     margin: 0 auto 40px auto !important;
   }
+  .content__items {
+	display: block;
+	}
 
   .cart .content__title {
     font-size: 24px;
