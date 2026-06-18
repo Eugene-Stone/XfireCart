@@ -30,3 +30,18 @@
     }
   }
 }
+.button--cart {
+	white-space: nowrap;
+}
+
+
+@media (max-width: 767.98px) {
+.header .container {
+	flex-wrap: wrap;
+}
+.header__search {
+	min-width: 100%;
+	order: 100;
+	margin-top: 20px;
+}
+}

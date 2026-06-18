@@ -60,8 +60,6 @@ export default function Sort() {
 		(sort) => sort.sortBy === sortBy && sort.sortOrder === sortOrder,
 	);
 
-	console.log(sortOpen);
-
 	return (
 		<div className={`sort ${sortOpen && 'open'}`}>
 			<div className="sort__label" onClick={() => sortToggle()}>

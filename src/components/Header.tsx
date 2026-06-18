@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderSearch from './HeaderSearch';
 
 export default function Header() {
 	return (
@@ -11,6 +12,9 @@ export default function Header() {
 						<p>Тепло в ваш дом</p>
 					</div>
 				</div>
+
+				<HeaderSearch />
+
 				<div className="header__cart">
 					<div className="button button--cart">
 						<span>520 $</span>

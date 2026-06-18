@@ -50,6 +50,9 @@ export const productsSlice = createSlice({
 		setCurrentCategory: (state, action) => {
 			state.currentCategory = action.payload;
 		},
+		setSearchValue: (state, action) => {
+			state.searchValue = action.payload;
+		},
 		setSortBy: (state, action) => {
 			state.sortBy = action.payload;
 		},
@@ -85,5 +88,6 @@ export const productsSlice = createSlice({
 	},
 });
 
-export const { setCurrentCategory, setSortBy, setSortOrder, setPage } = productsSlice.actions;
+export const { setCurrentCategory, setSearchValue, setSortBy, setSortOrder, setPage } =
+	productsSlice.actions;
 export default productsSlice.reducer;
