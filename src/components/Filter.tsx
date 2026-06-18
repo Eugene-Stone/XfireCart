@@ -21,7 +21,11 @@ export default function Filter() {
 		<div className="categories">
 			<ul>
 				{categories.map((cat, i) => {
-					let catActive = cat.name === currentCategory ? 'active' : '';
+					let catActive =
+						cat.name === currentCategory ||
+						(cat.name === 'Все' && currentCategory === '')
+							? 'active'
+							: '';
 					return (
 						<li
 							className={catActive}

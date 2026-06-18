@@ -28,9 +28,13 @@ export default function ProductList() {
 				<h2 className="content__title">Все котлы</h2>
 
 				<div className="content__items">
-					{products.map((product, index) => {
-						return <ProductCard key={product.id} {...product} />;
-					})}
+					{loading ? (
+						<div>Loading</div>
+					) : (
+						products.map((product, index) => {
+							return <ProductCard key={product.id} {...product} />;
+						})
+					)}
 				</div>
 			</div>
 		</div>

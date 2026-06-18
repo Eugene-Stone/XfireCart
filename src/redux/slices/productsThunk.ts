@@ -12,7 +12,7 @@ export const fetchProducts = createAsyncThunk<Product[], void, { state: RootStat
 
 		let url = '/products?';
 
-		if (currentCategory !== 'Все') {
+		if (currentCategory !== 'Все' && currentCategory !== '') {
 			url += `category:eq=${currentCategory}&`;
 		}
 

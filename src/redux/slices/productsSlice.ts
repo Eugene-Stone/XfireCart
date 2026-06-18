@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchProducts } from './productsThunk';
-import { fetchCategories } from './categoriesThunk';
 import type { Product, Category } from '../../types';
 
 export interface ProductsState {
@@ -11,18 +10,16 @@ export interface ProductsState {
 	searchValue: string;
 	sortBy: string;
 	sortOrder: 'asc' | 'desc';
-	categories: Category[];
 }
 
 const initialState: ProductsState = {
 	products: [],
 	loading: true,
 	errorData: null,
-	currentCategory: 'электро',
+	currentCategory: '',
 	searchValue: '',
-	sortBy: '',
-	sortOrder: 'asc',
-	categories: [],
+	sortBy: 'popularity',
+	sortOrder: 'desc',
 };
 
 export const productsSlice = createSlice({
@@ -31,6 +28,12 @@ export const productsSlice = createSlice({
 	reducers: {
 		setCurrentCategory: (state, action) => {
 			state.currentCategory = action.payload;
+		},
+		setSortBy: (state, action) => {
+			state.sortBy = action.payload;
+		},
+		setSortOrder: (state, action) => {
+			state.sortOrder = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -50,5 +53,5 @@ export const productsSlice = createSlice({
 	},
 });
 
-export const { setCurrentCategory } = productsSlice.actions;
+export const { setCurrentCategory, setSortBy, setSortOrder } = productsSlice.actions;
 export default productsSlice.reducer;

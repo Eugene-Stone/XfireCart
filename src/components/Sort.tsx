@@ -1,6 +1,49 @@
-import React from 'react';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { setSortBy, setSortOrder } from '../redux/slices/productsSlice';
 
 export default function Sort() {
+	const dispatch = useAppDispatch();
+	const { sortBy, sortOrder } = useAppSelector((state) => state.productsReducer);
+
+	type SortList = {
+		sortByName: string;
+		sortBy: string;
+		sortOrder: string;
+	};
+
+	function handleSorting(sort: SortList) {
+		dispatch(setSortBy(sort.sortBy));
+		dispatch(setSortOrder(sort.sortOrder));
+	}
+
+	const sortList = [
+		{
+			sortByName: 'популярности',
+			sortBy: 'popularity',
+			sortOrder: 'desc',
+		},
+		{
+			sortByName: 'цене ASC',
+			sortBy: 'price',
+			sortOrder: 'asc',
+		},
+		{
+			sortByName: 'цене DESC',
+			sortBy: 'price',
+			sortOrder: 'desc',
+		},
+		{
+			sortByName: 'алфавиту ASC',
+			sortBy: 'name',
+			sortOrder: 'asc',
+		},
+		{
+			sortByName: 'алфавиту DESC',
+			sortBy: 'name',
+			sortOrder: 'desc',
+		},
+	];
+
 	return (
 		<div className="sort">
 			<div className="sort__label">
@@ -18,13 +61,17 @@ export default function Sort() {
 				<b>Сортировка по:</b>
 				<span>популярности</span>
 			</div>
-			<div className="sort__popup hidden">
+			<div className="sort__popup">
 				<ul>
-					<li className="active">популярности</li>
-					<li>цене ASC</li>
-					<li>цене DESC</li>
-					<li>алфавиту ASC</li>
-					<li>алфавиту DESC</li>
+					{sortList.map((item, i) => {
+						let activeSort =
+							item.sortBy === sortBy && item.sortOrder === sortOrder ? 'active' : '';
+						return (
+							<li key={i} className={activeSort} onClick={() => handleSorting(item)}>
+								{item.sortByName}
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		</div>
