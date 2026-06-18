@@ -34,7 +34,10 @@ export const fetchProducts = createAsyncThunk<ProductsResponse, void, { state: R
 		}
 
 		if (sortBy !== '') {
-			url += `_sort=${sortOrder === 'desc' ? '-' : ''}${sortBy}&`;
+			// Если сортируем по цене — подставляем поле дефолтной цены
+			const sortField = sortBy === 'price' ? 'defaultPrice' : sortBy;
+
+			url += `_sort=${sortOrder === 'desc' ? '-' : ''}${sortField}&`;
 		}
 
 		// console.log(url);

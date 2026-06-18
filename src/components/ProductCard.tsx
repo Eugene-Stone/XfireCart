@@ -25,7 +25,9 @@ export default function ProductCard(props: Props) {
 			<div className="xfire-block__selector">
 				<ul>
 					{types.map((type, i) => (
-						<li key={i}>{type.typeName}</li>
+						<li key={i}>
+							<h3>{type.typeName}</h3>
+						</li>
 					))}
 				</ul>
 				<ul>
