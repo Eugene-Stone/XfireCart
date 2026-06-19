@@ -1,17 +1,18 @@
 import React from 'react';
 import HeaderSearch from './HeaderSearch';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
 	return (
 		<div className="header">
 			<div className="container">
-				<div className="header__logo">
+				<a href="/" className="header__logo">
 					<img width={38} src="./img/xfire-logo.svg" alt="xfire logo" />
 					<div>
 						<h1>Xfire</h1>
 						<p>Тепло в ваш дом</p>
 					</div>
-				</div>
+				</a>
 
 				<HeaderSearch />
 

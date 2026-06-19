@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { fetchProducts } from '../redux/slices/productsThunk.ts';
-import { setPage } from '../redux/slices/productsSlice.ts';
+import {
+	setPage,
+	setCurrentCategory,
+	setSearchValue,
+	setSortBy,
+	setSortOrder,
+} from '../redux/slices/productsSlice.ts';
 
 // Fixed import ReactPaginate
 import PacketPaginate from 'react-paginate';
@@ -33,26 +40,30 @@ export default function ProductList() {
 		last,
 	} = useAppSelector((state) => state.productsReducer);
 
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	useEffect(() => {
+		dispatch(setCurrentCategory(searchParams.get('category') || ''));
+		dispatch(setPage(Number(searchParams.get('page')) || 1));
+		dispatch(setSearchValue(searchParams.get('search') || ''));
+		dispatch(setSortBy(searchParams.get('sort') || 'popularity'));
+
+		dispatch(setSortOrder((searchParams.get('order') as 'asc' | 'desc') || 'desc'));
+	}, []);
+
+	useEffect(() => {
+		setSearchParams({
+			category: currentCategory,
+			sort: sortBy,
+			order: sortOrder,
+			page: String(page),
+			search: searchValue,
+		});
+	}, [currentCategory, sortBy, sortOrder, page, searchValue]);
+
 	useEffect(() => {
 		dispatch(fetchProducts());
 	}, [dispatch, currentCategory, searchValue, sortBy, sortOrder, page]);
-
-	// console.log(
-	// 	'page',
-	// 	page,
-	// 	'pages',
-	// 	pages,
-	// 	'items',
-	// 	items,
-	// 	'first',
-	// 	first,
-	// 	'prev',
-	// 	prev,
-	// 	'next',
-	// 	next,
-	// 	'last',
-	// 	last,
-	// );
 
 	return (
 		<div className="content">

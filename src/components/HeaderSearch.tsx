@@ -8,7 +8,12 @@ export default function HeaderSearch() {
 	const dispatch = useAppDispatch();
 	const { searchValue } = useAppSelector((state: RootState) => state.productsReducer);
 
-	const [inputValue, setInputValue] = useState('');
+	const [inputValue, setInputValue] = useState(searchValue);
+	useEffect(() => {
+		// eslint-disable-next-line
+		setInputValue(searchValue);
+	}, [searchValue]);
+
 	let searchValueDebounce = useDebounce(inputValue, 300);
 
 	useEffect(() => {
@@ -18,13 +23,16 @@ export default function HeaderSearch() {
 	return (
 		<div className="header__search">
 			<input
+				value={inputValue}
 				onChange={(event) => setInputValue(event.target.value)}
 				type="text"
 				placeholder="Поиск..."
 			/>
-			<button type="button" className="search-clear">
-				<span>x</span>
-			</button>
+			{inputValue && (
+				<button type="button" onClick={() => setInputValue('')} className="search-clear">
+					<span>x</span>
+				</button>
+			)}
 		</div>
 	);
 }
