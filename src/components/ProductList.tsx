@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
@@ -21,6 +21,8 @@ import Filter from './Filter';
 import Sort from './Sort';
 
 export default function ProductList() {
+	const isInitialized = useRef(false);
+
 	const dispatch = useAppDispatch();
 
 	const {
@@ -49,9 +51,13 @@ export default function ProductList() {
 		dispatch(setSortBy(searchParams.get('sort') || 'popularity'));
 
 		dispatch(setSortOrder((searchParams.get('order') as 'asc' | 'desc') || 'desc'));
-	}, []);
+
+		isInitialized.current = true;
+	}, [dispatch, searchParams]);
 
 	useEffect(() => {
+		if (!isInitialized.current) return;
+
 		setSearchParams({
 			category: currentCategory,
 			sort: sortBy,
@@ -59,7 +65,7 @@ export default function ProductList() {
 			page: String(page),
 			search: searchValue,
 		});
-	}, [currentCategory, sortBy, sortOrder, page, searchValue]);
+	}, [currentCategory, sortBy, sortOrder, page, searchValue, setSearchParams]);
 
 	useEffect(() => {
 		dispatch(fetchProducts());
