@@ -1,14 +1,33 @@
-import { useState } from 'react';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Header from './components/Header';
-import ProductList from './components/ProductList';
+import NotFoundPage from './pages/NotFoundPage';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
 
-function App() {
+function Layout() {
 	return (
 		<div className="wrapper">
 			<Header />
-			<ProductList />
+			<Outlet />
 		</div>
 	);
+}
+
+const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <Layout />,
+		errorElement: <NotFoundPage />,
+		children: [
+			{ index: true, element: <Home /> },
+			{ path: 'cart', element: <Cart /> },
+			{ path: '*', element: <NotFoundPage /> },
+		],
+	},
+]);
+
+function App() {
+	return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -28,7 +28,7 @@ export default function Header() {
 				<HeaderSearch />
 
 				<div className="header__cart">
-					<Link to="/cart/" className="button button--cart">
+					<Link to="/cart" className="button button--cart">
 						{totalCount !== 0 ? <span>{totalPrice} $</span> : <span>000 $</span>}
 
 						<div className="button__delimiter" />
