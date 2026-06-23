@@ -58,6 +58,18 @@ export default function ProductList() {
 	useEffect(() => {
 		if (!isInitialized.current) return;
 
+		const isDefault =
+			currentCategory === '' &&
+			searchValue === '' &&
+			sortBy === 'popularity' &&
+			sortOrder === 'desc' &&
+			page === 1;
+
+		if (isDefault) {
+			setSearchParams({});
+			return;
+		}
+
 		setSearchParams({
 			category: currentCategory,
 			sort: sortBy,

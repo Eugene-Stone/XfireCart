@@ -11,6 +11,10 @@ export const store = configureStore({
 	},
 });
 
+store.subscribe(() => {
+	localStorage.setItem('cart', JSON.stringify(store.getState().cartReducer.cartList));
+});
+
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
