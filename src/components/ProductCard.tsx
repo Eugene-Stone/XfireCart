@@ -1,6 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../redux/store';
 
 import type { Product } from '../types.ts';
+import { addProduct } from '../redux/slices/cartSlice.ts';
 
 type Props = Product;
 
@@ -18,6 +21,27 @@ export default function ProductCard(props: Props) {
 		rating,
 	} = props;
 
+	const [activePower, setActivePower] = useState<string>(selected_power);
+	const dispatch = useDispatch();
+
+	const { cartList } = useSelector((state: RootState) => state.cartReducer);
+
+	function changePower(power: string) {
+		setActivePower(power);
+	}
+	function addToCart() {
+		const cartItem = {
+			id,
+			name,
+			image,
+			category,
+			power_options,
+			price,
+			activePower,
+		};
+		dispatch(addProduct(cartItem));
+	}
+
 	return (
 		<div className="xfire-block">
 			<img className="xfire-block__image" src={image} alt="xfire" />
@@ -32,10 +56,10 @@ export default function ProductCard(props: Props) {
 				</ul>
 				<ul>
 					{power_options.map((power, i) => {
-						let powerActive = power === selected_power ? 'active' : '';
+						let active = power === activePower ? 'active' : '';
 
 						return (
-							<li key={i} className={powerActive}>
+							<li key={i} className={active} onClick={() => changePower(power)}>
 								{power}
 							</li>
 						);
@@ -43,7 +67,7 @@ export default function ProductCard(props: Props) {
 				</ul>
 			</div>
 			<div className="xfire-block__bottom">
-				<div className="xfire-block__price">от {price[selected_power]} $</div>
+				<div className="xfire-block__price">от {price[activePower]} $</div>
 				<div className="button button--outline button--add">
 					<svg
 						width={12}
@@ -56,8 +80,8 @@ export default function ProductCard(props: Props) {
 							fill="white"
 						/>
 					</svg>
-					<span>Добавить</span>
-					<i>2</i>
+					<span onClick={() => addToCart()}>Добавить</span>
+					{/* <i>2</i> */}
 				</div>
 			</div>
 		</div>

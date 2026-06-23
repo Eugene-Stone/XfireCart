@@ -1,22 +1,39 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setSortBy, setSortOrder } from '../redux/slices/productsSlice';
 
 import { Transition } from 'react-transition-group';
 
+type SortList = {
+	sortByName: string;
+	sortBy: string;
+	sortOrder: string;
+};
+
 export default function Sort() {
 	const [sortOpen, setSortOpen] = useState(false);
+	const sortRef = useRef<HTMLDivElement>(null);
 	const nodeRef = useRef<HTMLDivElement>(null);
 
 	const dispatch = useAppDispatch();
 	const { sortBy, sortOrder } = useAppSelector((state) => state.productsReducer);
 
-	type SortList = {
-		sortByName: string;
-		sortBy: string;
-		sortOrder: string;
-	};
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			const path = event.composedPath();
+
+			if (sortRef.current && !path.includes(sortRef.current)) {
+				setSortOpen(false);
+			}
+		};
+
+		document.body.addEventListener('click', handleClickOutside);
+
+		return () => {
+			document.body.removeEventListener('click', handleClickOutside);
+		};
+	}, []);
 
 	function sortToggle() {
 		setSortOpen(!sortOpen);
@@ -61,7 +78,7 @@ export default function Sort() {
 	);
 
 	return (
-		<div className={`sort ${sortOpen && 'open'}`}>
+		<div ref={sortRef} className={`sort ${sortOpen && 'open'}`}>
 			<div className="sort__label" onClick={() => sortToggle()}>
 				<svg
 					width={10}
