@@ -1,13 +1,24 @@
 import React from 'react';
-import HeaderSearch from './HeaderSearch';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../redux/store';
 import { Link } from 'react-router-dom';
+import HeaderSearch from './HeaderSearch';
 
 export default function Header() {
+	const { cartList } = useSelector((state: RootState) => state.cartReducer);
+
+	const totalCount = cartList.reduce((summ, item) => {
+		return summ + item.count;
+	}, 0);
+	const totalPrice = cartList.reduce((summ, item) => {
+		return summ + item.count * item.price[item.activePower];
+	}, 0);
+
 	return (
 		<div className="header">
 			<div className="container">
 				<a href="/" className="header__logo">
-					<img width={38} src="./img/xfire-logo.svg" alt="xfire logo" />
+					<img width={38} src="/img/xfire-logo.svg" alt="xfire logo" />
 					<div>
 						<h1>Xfire</h1>
 						<p>Тепло в ваш дом</p>
@@ -17,8 +28,9 @@ export default function Header() {
 				<HeaderSearch />
 
 				<div className="header__cart">
-					<div className="button button--cart">
-						<span>520 $</span>
+					<Link to="/cart/" className="button button--cart">
+						{totalCount !== 0 ? <span>{totalPrice} $</span> : <span>000 $</span>}
+
 						<div className="button__delimiter" />
 						<svg
 							width={18}
@@ -48,8 +60,8 @@ export default function Header() {
 								strokeLinejoin="round"
 							/>
 						</svg>
-						<span>3</span>
-					</div>
+						<span>{totalCount}</span>
+					</Link>
 				</div>
 			</div>
 		</div>
