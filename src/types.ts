@@ -24,6 +24,6 @@ export type CartType = {
 	types: { typeName: string }[];
 	power_options: string[];
 	price: Record<string, number>;
-	count: number;
+	count?: number;
 	activePower: string;
 };

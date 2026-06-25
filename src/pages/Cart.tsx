@@ -14,10 +14,10 @@ export default function Cart() {
 	const { cartList } = useSelector((state: RootState) => state.cartReducer);
 
 	const totalCount = cartList.reduce((summ, item) => {
-		return summ + item.count;
+		return summ + (item.count || 0);
 	}, 0);
 	const totalPrice = cartList.reduce((summ, item) => {
-		return summ + item.count * item.price[item.activePower];
+		return summ + item.price[item.activePower] * (item.count || 1);
 	}, 0);
 
 	function handleCart() {
@@ -111,7 +111,7 @@ export default function Cart() {
 										<div className="cart__item-img">
 											<img
 												className="xfire-block__image"
-												src={cartItem.image}
+												src={`${import.meta.env.BASE_URL}/${cartItem.image}`}
 												alt={cartItem.name}
 											/>
 										</div>
@@ -164,8 +164,9 @@ export default function Cart() {
 										</div>
 										<div className="cart__item-price">
 											<b>
-												{cartItem.count *
-													cartItem.price[cartItem.activePower]}{' '}
+												{cartItem.count &&
+													cartItem.count *
+														cartItem.price[cartItem.activePower]}{' '}
 												$
 											</b>
 										</div>
@@ -245,7 +246,10 @@ export default function Cart() {
 							<br />
 							Для того, чтобы заказать, перейди на главную страницу.
 						</p>
-						<img src="/img/empty-cart.svg" alt="Empty cart" />
+						<img
+							src={`${import.meta.env.BASE_URL}/img/empty-cart.svg`}
+							alt="Empty cart"
+						/>
 						<Link to="/" className="button button--black">
 							<span>Вернуться назад</span>
 						</Link>

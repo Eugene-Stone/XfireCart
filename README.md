@@ -1,6 +1,8 @@
 # XfireCart
 
 XfireCart - это одностраничное приложение (SPA) для интернет-магазина, разработанное с использованием React, TypeScript, Redux Toolkit и React Router DOM. Проект включает в себя корзину покупок, фильтрацию и сортировку товаров, а также имитацию получения данных с сервера.
+### Demo - https://eugene-stone.github.io/XfireCart
+
 
 ## Технологии
 

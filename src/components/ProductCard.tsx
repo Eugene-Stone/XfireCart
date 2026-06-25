@@ -35,6 +35,7 @@ export default function ProductCard(props: Props) {
 			name,
 			image,
 			category,
+			types,
 			power_options,
 			price,
 			activePower,
@@ -44,7 +45,11 @@ export default function ProductCard(props: Props) {
 
 	return (
 		<div className="xfire-block">
-			<img className="xfire-block__image" src={image} alt="xfire" />
+			<img
+				className="xfire-block__image"
+				src={`${import.meta.env.BASE_URL}/${image}`}
+				alt="xfire"
+			/>
 			<h4 className="xfire-block__title">{name}</h4>
 			<div className="xfire-block__selector">
 				<ul>

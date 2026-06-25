@@ -18,7 +18,12 @@ export default function Header() {
 		<div className="header">
 			<div className="container">
 				<a href="/" className="header__logo">
-					<img width={38} src="/img/xfire-logo.svg" alt="xfire logo" />
+					<img
+						width={38}
+						src={`${import.meta.env.BASE_URL}/img/xfire-logo.svg`}
+						alt="xfire logo"
+					/>
+
 					<div>
 						<h1>Xfire</h1>
 						<p>Тепло в ваш дом</p>

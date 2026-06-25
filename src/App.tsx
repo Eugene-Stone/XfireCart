@@ -13,18 +13,21 @@ function Layout() {
 	);
 }
 
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Layout />,
-		errorElement: <NotFoundPage />,
-		children: [
-			{ index: true, element: <Home /> },
-			{ path: 'cart', element: <Cart /> },
-			{ path: '*', element: <NotFoundPage /> },
-		],
-	},
-]);
+const router = createBrowserRouter(
+	[
+		{
+			path: '/',
+			element: <Layout />,
+			errorElement: <NotFoundPage />,
+			children: [
+				{ index: true, element: <Home /> },
+				{ path: 'cart', element: <Cart /> },
+				{ path: '*', element: <NotFoundPage /> },
+			],
+		},
+	],
+	{ basename: '/XfireCart' },
+);
 
 function App() {
 	return <RouterProvider router={router} />;
