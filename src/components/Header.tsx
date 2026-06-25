@@ -8,10 +8,10 @@ export default function Header() {
 	const { cartList } = useSelector((state: RootState) => state.cartReducer);
 
 	const totalCount = cartList.reduce((summ, item) => {
-		return summ + item.count;
+		return summ + (item.count || 0);
 	}, 0);
 	const totalPrice = cartList.reduce((summ, item) => {
-		return summ + item.count * item.price[item.activePower];
+		return summ + item.price[item.activePower] * (item.count || 1);
 	}, 0);
 
 	return (

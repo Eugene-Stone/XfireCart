@@ -29,7 +29,10 @@ export const cartSlice = createSlice({
 			// console.log(action.payload.activePower);
 
 			if (existingProduct) {
-				existingProduct.count = existingProduct.count + 1;
+				if (existingProduct.count) {
+					existingProduct.count = existingProduct.count + 1;
+				}
+
 				return;
 			}
 
@@ -45,9 +48,13 @@ export const cartSlice = createSlice({
 					item.activePower === action.payload.activePower,
 			);
 
-			if (existingProduct && existingProduct.count > 1) {
-				existingProduct.count = existingProduct.count - 1;
-				return;
+			if (existingProduct) {
+				if (existingProduct.count) {
+					if (existingProduct.count > 1) {
+						existingProduct.count = existingProduct.count - 1;
+					}
+					return;
+				}
 			} else {
 				state.cartList = state.cartList.filter(
 					(item) =>
